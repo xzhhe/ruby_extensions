@@ -58,6 +58,18 @@ os = read_json_to_obj('/Users/xiongzenghui/Desktop/xzhworkspace/demo.json')
 puts os.name
 ```
 
+再比如, 你需要把一个字符串写入到文件中:
+
+```ruby
+File.open(file, 'w+') { |f| f.write('我是写入的文件内容') }
+```
+
+使用 ruby_extensions 这个库之后, 可以变得更加的优雅:
+
+```ruby
+require 'ruby_extensions'
+'我是写入的文件内容'.ext_write_to_file(file)
+```
 
 
 ## Contributing
