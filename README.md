@@ -1,8 +1,7 @@
 # RubyExtensions
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ruby_extensions`. To experiment with that code, run `bin/console` for an interactive prompt.
+主要是对 Ruby 系统类提供的方法、常用的 Ruby 代码片段, 进行简易的二次封装, 提供更简洁的调用方式。
 
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
@@ -20,15 +19,46 @@ Or install it yourself as:
 
     $ gem install ruby_extensions
 
+## 目前支持的类型
+
+- String
+- Hash
+- Array
+- File
+
 ## Usage
 
-TODO: Write usage instructions here
+比如，你需要使用 Ruby 对一个字符串计算得到 MD5 值, 那么你能需要写如下几行代码:
 
-## Development
+```ruby
+require 'digest'
+puts Digest::MD5.hexdigest('111111') #=> 96e79218965eb72c92a549dd5a330112
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+使用 ruby_extensions 这个库之后, 可以变得更加的优雅:
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```ruby
+require 'ruby_extensions'
+puts '111111'.ext_md5 #=> 96e79218965eb72c92a549dd5a330112
+```
+
+再比如, 你需要读取一个 json 文件, 然后转换为 OpenStruct, 那么你可以可能这样写:
+
+```ruby
+require 'ostruct'
+os = JSON.parse(File.read('/Users/xiongzenghui/Desktop/xzhworkspace/demo.json'), object_class: OpenStruct)
+puts os.name
+```
+
+使用 ruby_extensions 这个库之后, 可以变得更加的优雅:
+
+```ruby
+require 'ruby_extensions'
+os = read_json_to_obj('/Users/xiongzenghui/Desktop/xzhworkspace/demo.json')
+puts os.name
+```
+
+
 
 ## Contributing
 

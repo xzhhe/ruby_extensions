@@ -37,4 +37,10 @@ class Array
   def ext_map(message, *args)
     map { |e| e.send(message.to_sym, *args) }
   end
+
+  #
+  # [1,1,2,2,222,3].ext_repeat_values #=> [1, 2]
+  def ext_repeat_values
+    group_by { |e| e }.select { |_, v| v.size > 1 }.map(&:first)
+  end
 end
