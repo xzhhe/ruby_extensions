@@ -1,3 +1,14 @@
+#
+# pp zip_to_hash(['name', 'age'], ['xiongzenghui', 99], symbol_key: true)
+# pp zip_to_hash(['name', 'age'], ['xiongzenghui', 99])
+def zip_to_hash(keys, values, options = {})
+  if options[:symbol_key]
+    keys.map(&:to_sym).zip(values).to_h
+  else
+    keys.zip(values).to_h
+  end
+end
+
 class Array
   #
   # puts [true, false].or?
@@ -42,5 +53,12 @@ class Array
   # [1,1,2,2,222,3].ext_repeat_values #=> [1, 2]
   def ext_repeat_values
     group_by { |e| e }.select { |_, v| v.size > 1 }.map(&:first)
+  end
+
+  #
+  # pp ['name', 'age'].ext_zip(['xiongzenghui', 99])
+  # pp ['name', 'age'].ext_zip(['xiongzenghui', 99], symbol_key: true)
+  def ext_zip(values, options = {})
+    zip_to_hash(self, values, options)
   end
 end
