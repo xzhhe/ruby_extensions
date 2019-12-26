@@ -31,6 +31,9 @@ def expand_path(path, dir)
 end
 
 def dir_glob(expr, dir, options = {})
+  return nil unless dir
+  return nil unless Dir.exist?(dir)
+
   log = options[:log]
   if log
     puts "[dir_glob] expr: #{expr}"
