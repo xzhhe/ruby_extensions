@@ -1,19 +1,21 @@
 require 'json'
+require 'shellwords'
 require 'pathname'
 require 'ostruct'
 require 'yaml'
-require 'shellwords'
+require 'toml-rb'
 
 def symlink?(file_path)
   File.symlink?(file_path)
 end
 
+#
+# pp read_yml('/Users/xiongzenghui/Desktop/workspace/ZHUDID_workspace/project/osee2unified/Venomfiles/customization.yml')
 def read_yml(file)
-  pp YAML.safe_load(File.open(file))
+  YAML.safe_load(File.open(file))
 end
 
 def read_toml(file)
-  require 'toml-rb'
   # xx.toml 键值对, 可以有空格
   # # Hello, this is an example.
   # [things]
