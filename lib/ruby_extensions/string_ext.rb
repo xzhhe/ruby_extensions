@@ -29,12 +29,12 @@ def string_exist?(str)
   return false if str.strip.empty?
   true
 end
-puts string_exist?(nil)
-puts string_exist?('')
-puts string_exist?(' ')
-puts string_exist?("")
-puts string_exist?("  ")
-puts string_exist?(" 11 ")
+# puts string_exist?(nil)
+# puts string_exist?('')
+# puts string_exist?(' ')
+# puts string_exist?("")
+# puts string_exist?("  ")
+# puts string_exist?(" 11 ")
 
 class String
   #
