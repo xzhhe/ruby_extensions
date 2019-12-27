@@ -24,6 +24,18 @@ def string_eql?(str1, str2)
   str1_s.eql?(str2_s)
 end
 
+def string_exist?(str)
+  return false unless str
+  return false if str.strip.empty?
+  true
+end
+puts string_exist?(nil)
+puts string_exist?('')
+puts string_exist?(' ')
+puts string_exist?("")
+puts string_exist?("  ")
+puts string_exist?(" 11 ")
+
 class String
   #
   # puts '111'.ext_eql?('111')
