@@ -78,4 +78,15 @@ class String
     File.basename(self) if expr.empty?
     File.basename(self, expr)
   end
+
+  # puts '88686786ca373b9fd43ab09b4a256f87cda753b9'.ext_commit_short_sha
+  def ext_commit_short_sha
+    self[0, 8]
+  end
 end
+
+def commit_short_sha(str)
+  return nil unless str
+  str[0, 8]
+end
+# puts commit_short_sha('88686786ca373b9fd43ab09b4a256f87cda753b9')
