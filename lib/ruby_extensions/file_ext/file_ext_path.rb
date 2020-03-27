@@ -48,23 +48,23 @@ end
 # pp dir_glob("*.rb", Dir.pwd)
 
 def file_size(file_path)
-  total = 0
   return 0 unless File.exist?(file_path)
 
-  base = File.basename(file_path)
-  return 0 if ['.', '..'].include?(base)
+  # 避免 . 和 .. 产生 死循环
+  basename = File.basename(file_path)
+  return 0 if %w(. ..).include?(basename)
 
-  dir = File.dirname(file_path)
-  file_path = file_join([dir, base])
-
+  total = 0
   if File.directory?(file_path)
     Dir.foreach(file_path) { |file_name|
-      total += file_size(file_join([file_path, file_name]))
+      total += file_size(File.join(file_path, file_name))
     }
   else
-    size = File.stat(file_path).size
-    total += size
+    total += File.stat(file_path).size
   end
-
   total
 end
+# size = file_size('/Users/xiongzenghui/Downloads/RubyMine-2019.3.4.dmg')
+# puts size
+# puts format_file_size(size)
+# puts format_file_size(size, 1000)

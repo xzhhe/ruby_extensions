@@ -7,6 +7,13 @@ def hash_to_obj(hash)
   hash.to_obj
 end
 
+## Hash to json string
+# hash ={
+#   name: 'xiongzenghui',
+#   age: 99
+# }
+# pp hash.to_json         #=> "{\"name\":\"xiongzenghui\",\"age\":99}"
+# pp JSON.generate(hash)  #=> "{\"name\":\"xiongzenghui\",\"age\":99}"
 def hash_generate_json(hash)
   JSON.generate(hash)
 end
@@ -23,6 +30,14 @@ end
 
 def reverse_hash(hash)
   Hash[hash.map { |k, v| [v, k] }]
+end
+
+def hash_write_to_file(file_path, options = {})
+  if options[:pretty]
+    File.open(file_path, 'w+') { |f| f.write(JSON.pretty_generate(self)) }
+  else
+    File.open(file_path, 'w+') { |f| f.write(JSON.generate(self)) }
+  end
 end
 
 class Hash
